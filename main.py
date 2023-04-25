@@ -56,7 +56,7 @@ def generate_notes_chords(genre, time_signature, measure_length, error, prevResu
             split_result = result.split("\n")
             if len(split_result) != 2:
                 st.write(result)
-                st.error("Generated output is not in the expected format. Please try again.")
+                st.error("Generated output is not in the expected format. Trying again.")
                 error = "Not in expected format"
                 prevResult = result
             else:
@@ -77,7 +77,7 @@ if st.button("Generate Chords and Melody"):
         split_result = result.split("\n")
         if len(split_result) != 2:
             st.write(result)
-            st.error("Generated output is not in the expected format. Please try again.")
+            st.error("Generated output is not in the expected format. Trying again.")
         else:
             notes, chords = split_result
             st.session_state.notes = notes
@@ -108,14 +108,16 @@ if st.button("Generate mp3 file and sheet music"):
                         split_result = result.split("\n")
                         if len(split_result) != 2:
                             st.write(result)
-                            st.error("Generated output is not in the expected format. Please try again.")
+                            st.error("Generated output is not in the expected format. Trying again.")
                             num_attempts += 1
                         else:
                             thisWorked = True
                             notes, chords = split_result
                             st.session_state.notes = notes
                             st.session_state.chords = chords
+                            st.write(f"**Generated {genre} Notes:**")
                             st.write(notes)
+                            st.write(f"**Generated {genre} Chords:**")
                             st.write(chords)
 
             # Use st.session_state.notes and st.session_state.chords instead of result
@@ -131,11 +133,11 @@ if st.button("Generate mp3 file and sheet music"):
                 input=input_data,
                 api_token=REPLICATE_API_TOKEN,
             )
-            st.write(f"**Generated {genre} Notes:**")
-            st.write(st.session_state.notes)
+            # st.write(f"**Generated {genre} Notes:**")
+            # st.write(st.session_state.notes)
 
-            st.write(f"**Generated {genre} Chords:**")
-            st.write(st.session_state.chords)
+            # st.write(f"**Generated {genre} Chords:**")
+            # st.write(st.session_state.chords)
             
             st.write(f"**Generated Music:**")
             st.audio(output['mp3'])
