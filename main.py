@@ -8,6 +8,7 @@ REPLICATE_API_TOKEN = os.getenv("REPLICATE_API_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 st.title("SongwritingGPT")
+st.write("This application leverages the power of GPT-4 to create music based on your chosen genre, time signature, and measure length. Please note that, as a beta version, the generated melodies may not always be accurate on the first attempt, but the app will automatically regenerate them if needed. For any questions or feedback, feel free to reach out to me at ethanjags@berkeley.edu.")
 
 # Select a genre
 genre_options = ["Jazz", "Rock", "Pop", "Type your own genre..."]
@@ -24,7 +25,7 @@ tempo = st.slider("Enter tempo (beats per minute):", min_value=30, max_value=300
 # seed = st.number_input("Enter random seed (-1 for random):", min_value=-1, max_value=10000, value=-1, step=1)
 
 
-# Generate notes and chords using GPT-3 based on the selected genre, time signature, and measure length
+# Generate notes and chords using GPT-4 based on the selected genre, time signature, and measure length
 openai.api_key = OPENAI_API_KEY
 error = False
 prevResult = False
@@ -89,7 +90,7 @@ if st.button("Generate Chords and Melody"):
             st.write(st.session_state.chords)
 
 
-if st.button("Generate Music"):
+if st.button("Generate mp3 file and sheet music"):
     firstTime = True
     result = None  # Initialize the result variable
     if "notes" not in st.session_state or "chords" not in st.session_state:
