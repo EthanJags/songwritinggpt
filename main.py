@@ -4,8 +4,8 @@ import replicate
 import streamlit as st
 
 # Set your API tokens
-REPLICATE_API_TOKEN = os.environ["REPLICATE_API_TOKEN"]
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+REPLICATE_API_TOKEN = os.getenv("REPLICATE_API_TOKEN")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 st.title("SongwritingGPT")
 
