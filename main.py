@@ -41,7 +41,7 @@ def generate_notes_chords(genre, time_signature, measure_length, error, prevResu
         if error and prevResult:
             prompt += f"\n{prevResult} did not work. Please fix the error. This is the error that was returned: {error}"
 
-        message = [{"role": "user", "content": prompt},{"assistant": "D4 A4 B4 F#4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G2 \n D | A | Bm | F#m | G | D | A"}]
+        message = [{"role": "user", "content": prompt},{"role": "assistant", "content" : "D4 A4 B4 F#4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G2 \n D | A | Bm | F#m | G | D | A"}]
         try:
             response = openai.ChatCompletion.create(
                 model="gpt-4",
