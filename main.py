@@ -36,12 +36,12 @@ def generate_notes_chords(genre, time_signature, measure_length, error, prevResu
     num_attempts = 0
     itWorked = False
     while not itWorked and num_attempts < 5:
-        prompt = f"Generate a simple melody and chord progression inspired by john mayer in tinynotation format for a {genre.lower()} song with {time_signature}/4 time signature and {measure_length} measures. Ensure that both the melody and chords have the same number of measures and each measure contains the same amount of beats. The generated output should contain exactly two lines: the first line for the melody notes and the second line for the chords. Ensure there is only one chord per measure. Separate melody notes with '|' and chords with '|'. Make sure the output contains no extra words or punctuation.     The music must contain a variety of note lengths. A 4 after a note indicates a quarter note, an 8 means an eighth note, a 2 means a half note. It should be interesting, involve different lengths of notes and melodic intervals. It should be based on music theory and sound good.     Here is an example: D4 A4 B4 F#4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G2 \n D | A | Bm | F#m | G | D | A"
+        prompt = f"Generate a simple melody and chord progression inspired by john mayer in tinynotation format for a {genre.lower()} song with {time_signature}/4 time signature and {measure_length} measures. Ensure that both the melody and chords have the same number of measures and each measure contains the same amount of beats. The generated output should contain exactly two lines: the first line for the melody notes and the second line for the chords. Ensure there is only one chord per measure. Separate melody notes with '|' and chords with '|'. Make sure the output contains no extra words or punctuation.     The music must contain a variety of note lengths. A 4 after a note indicates a quarter note, an 8 means an eighth note, a 2 means a half note. It should be interesting, involve different lengths of notes and melodic intervals. It should be based on music theory and sound good."
     
         if error and prevResult:
             prompt += f"\n{prevResult} did not work. Please fix the error. This is the error that was returned: {error}"
 
-        message = [{"role": "user", "content": prompt}]
+        message = [{"role": "user", "content": prompt},{"assistant": "D4 A4 B4 F#4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G4 D4 | G8 A8 G8 A8 G4 A4 | B4 F#4 G2 \n D | A | Bm | F#m | G | D | A"}]
         try:
             response = openai.ChatCompletion.create(
                 model="gpt-4",
